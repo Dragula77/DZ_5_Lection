@@ -1,26 +1,23 @@
-﻿// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 // [3 7 22 2 78] -> 76
 
-int[] GenerateArray(int size, int leftRange, int rightRange)
+    double[] GenerateArray()
 {
-    int[] array = new int[size];
+    double[] array = new double[5];
     var rand = new Random();
     for (int i = 0; i < array.Length; i++)
     {
-        array[i] = rand.Next(leftRange, rightRange + 1); // -9, 9 + 1
+        array[i] = rand.NextDouble()*100;
+        System.Console.Write("{0,6:F2}\t", array[i]);
     }
+    
     return array;
 }
-void PrintArray(int[] array)
-{
-    System.Console.WriteLine("[" + string.Join(", ", array) + "]");
-}
 
-
-int SumPositive(int[] array)
+double SumPositive(double[] array)
 {
-    int sumMin = array[0];
-    int sumMax = array[0];
+    double sumMin = array[0];
+    double sumMax = array[0];
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i]>sumMax)
@@ -32,10 +29,10 @@ int SumPositive(int[] array)
             sumMin = array[i];
         }
     }
-    return sumMax - sumMin;
+    return Math.Round(sumMax - sumMin,2);
 }
 
-int[] myArray = GenerateArray(5, 1, 100);
-PrintArray(myArray);
-
-System.Console.WriteLine($"разница между максимальным и минимальным элементов массива:  {SumPositive(myArray)}");
+double[] myArray = GenerateArray();
+System.Console.WriteLine();
+System.Console.WriteLine($" разница между элементов массива: {SumPositive(myArray)}");
+ 
